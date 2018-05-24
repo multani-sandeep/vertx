@@ -1,10 +1,8 @@
 package io.vertx.example.core.http.proxy;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpClient;
 import io.vertx.core.http.HttpClientOptions;
 import io.vertx.core.http.HttpClientRequest;
@@ -64,6 +62,12 @@ public class HybrisAD extends Application {
 	private static class Mapper{
 		public String destURI;
 		public String srcURI;
+		
+		static public Mapper getDefaultMapper(){
+			Mapper m = new Mapper();
+			m.destURI = "/";
+			return m;
+		}
 	}
 	final static List<Mapper> reqTranslation = new ArrayList();
 	static {
@@ -73,6 +77,6 @@ public class HybrisAD extends Application {
 	}
 
 	private String mapURI(HttpServerRequest req) {
-		return reqTranslation.stream().filter(translation ->{ return req.uri().contains(translation.srcURI);}).findFirst().get().destURI;
+		return reqTranslation.stream().filter(translation ->{ return req.uri().contains(translation.srcURI);}).findFirst().orElse(Mapper.getDefaultMapper()).destURI;
 	}
 }

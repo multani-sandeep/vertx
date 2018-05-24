@@ -6,7 +6,7 @@ echo > /tmp/verticle1.log /tmp/verticle2.log /tmp/verticle3.log /tmp/verticle4.l
 echo Starting Hybris-AD
 $(
 	export JAVA_OPTS="-javaagent:/Users/sandeepsingh/Downloads/appagent/javaagent.jar -Dappdynamics.agent.nodeName=App1 -Dappdynamics.agent.tierName=Hybris-AD"
-	$vertx3 run ./src/main/java/io/vertx/example/core/http/proxy/HybrisAD.java > /tmp/verticle1.log 
+	$vertx3 run ./src/main/java/io/vertx/example/core/http/proxy/HybrisAD.java > /tmp/verticle1.log & 
 )&
 
 echo Starting Hybris-ACP
