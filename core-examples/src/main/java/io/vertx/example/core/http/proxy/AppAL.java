@@ -26,6 +26,13 @@ public class AppAL extends Application {
 		
 		 vertx.createHttpServer().requestHandler(req -> {
 			 log("Send response");
+//			 try {
+//				Thread.sleep(1000);
+//				log("Added Delay");
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 		      req.response().putHeader("content-type", "text/html").end("<html><body><h1>Hello from vert.x!</h1></body></html>");
 		    }).listen(port);
 	}
